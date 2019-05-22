@@ -33,6 +33,8 @@ folds: [
 ]
 
 scopes:
+  'source_file': 'source.rust'
+
   'type_identifier': 'support.type.other'
   'primitive_type': 'support.type.primitive'
   'field_identifier': 'variable.other.member'
