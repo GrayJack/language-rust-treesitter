@@ -68,6 +68,7 @@ scopes:
   ''' : 'entity.name.function.call'
 
   '''
+  macro_invocation,
   macro_invocation > identifier,
   macro_definition > identifier,
   ''' : 'entity.name.macro'
