@@ -45,65 +45,63 @@ scopes:
   ]
 
   '''
-  identifier,
-  call_expression > identifier,
-  call_expression > field_expression > field_identifier,
-  call_expression > scoped_identifier > identifier:nth-child(2)
+    identifier,
+    call_expression > identifier,
+    call_expression > field_expression > field_identifier,
+    call_expression > scoped_identifier > identifier:nth-child(2)
   ''': [
     {match: '^[A-Z]', scopes: 'entity.name.class'}
   ]
 
   '''
-  generic_function > identifier,
-  generic_function > field_expression > field_identifier,
-  generic_function > scoped_identifier > identifier,
-  function_item > identifier,
-  function_signature_item > identifier,
+    generic_function > identifier,
+    generic_function > field_expression > field_identifier,
+    generic_function > scoped_identifier > identifier,
+    function_item > identifier,
+    function_signature_item > identifier,
   ''' : 'entity.name.function'
 
   '''
-  call_expression > identifier,
-  call_expression > field_expression > field_identifier,
-  call_expression > scoped_identifier > identifier:nth-child(2),
+    call_expression > identifier,
+    call_expression > field_expression > field_identifier,
+    call_expression > scoped_identifier > identifier:nth-child(2),
   ''' : 'entity.name.function.call'
 
   '''
-  macro_invocation,
-  macro_invocation > identifier,
-  macro_definition > identifier,
+    macro_invocation > identifier,
+    macro_definition > identifier,
   ''' : 'entity.name.macro'
 
   '''
-  use_list > self,
-  scoped_use_list > self,
-  scoped_identifier> self,
-  use_list > crate,
-  scoped_use_list > crate,
-  scoped_identifier> crate,
-  use_list > super,
-  scoped_use_list > super,
-  scoped_identifier> super
+    use_list > self,
+    scoped_use_list > self,
+    scoped_identifier> self,
+    use_list > crate,
+    scoped_use_list > crate,
+    scoped_identifier> crate,
+    use_list > super,
+    scoped_use_list > super,
+    scoped_identifier> super
   ''': 'keyword.control'
 
   '''
-  use_wildcard > identifier:nth-child(0),
-  scoped_type_identifier > identifier:nth-child(0),
-  scoped_type_identifier > scoped_identifier:nth-child(0) > identifier,
-  scoped_identifier > identifier:nth-child(0),
-  scoped_identifier > scoped_identifier:nth-child(0) > identifier,
-  use_declaration > identifier,
-  use_declaration > scoped_identifier > identifier,
-  use_list > identifier,
-  use_list > scoped_identifier > identifier,
-  meta_item > identifier
+    use_wildcard > identifier:nth-child(0),
+    scoped_type_identifier > identifier:nth-child(0),
+    scoped_type_identifier > scoped_identifier:nth-child(0) > identifier,
+    scoped_identifier > identifier:nth-child(0),
+    scoped_identifier > scoped_identifier:nth-child(0) > identifier,
+    use_declaration > identifier,
+    use_declaration > scoped_identifier > identifier,
+    use_list > identifier,
+    use_list > scoped_identifier > identifier,
+    meta_item > identifier
   ''': [
     {match: '^[A-Z]', scopes: 'support.type'}
   ]
 
-  '''
-    lifetime,
-    lifetime > identifier,
-  ''' : 'constant.lifetime'
+  'function_item > parameters > parameter > identifier' : 'entity.name.parameter'
+
+  'lifetime' : 'constant.lifetime'
 
   '"async"' : 'storage.modifier.async'
   '"let"': 'storage.modifier.let'
@@ -164,13 +162,39 @@ scopes:
   ''' : 'keyword.operator.math'
 
   '''
+    "+=",
+    "-=",
+    "/=",
+    "*=",
+    "%=",
+    "<<=",
+    ">>=",
+  ''' : 'keyword.operator.math.assign'
+
+  '''
+    "<",
+    ">",
+    "==",
+    "<=",
+    ">=",
+    "!=",
+  ''' : 'keyword.operator.cmp'
+
+  '"!"' : [ {match: '(!)(?=[:word:])', scopes: 'keyword.operator.not'} ]
+
+  '''
     "&",
     "|",
     "^",
   ''' : 'keyword.operator.logic.bitwise'
 
   '''
-    "!",
+    "&=",
+    "|=",
+    "^=",
+  ''' : 'keyword.operator.logic.bitwise.assign'
+
+  '''
     "&&",
     "||",
   ''' : 'keyword.operator.logic.boolean'
