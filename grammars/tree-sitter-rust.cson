@@ -99,8 +99,12 @@ scopes:
     {match: '^[A-Z]', scopes: 'support.type'}
   ]
 
-  'lifetime > identifier': 'constant.lifetime'
+  '''
+    lifetime,
+    lifetime > identifier,
+  ''' : 'constant.lifetime'
 
+  '"async"' : 'storage.modifier.async'
   '"let"': 'storage.modifier.let'
   '"const"': 'storage.modifier.const'
   '"static"': 'storage.modifier.static'
@@ -119,6 +123,7 @@ scopes:
   '"union"': 'storage.modifier.union'
   'mutable_specifier': 'storage.modifier.mut'
 
+  '".await"' : 'keyword.control.await'
   '"unsafe"': 'keyword.control.unsafe'
   '"use"': 'keyword.control.use'
   '"match"': 'keyword.control.match'
@@ -135,23 +140,49 @@ scopes:
   '"break"': 'keyword.control.break'
   '"where"': 'keyword.control.where'
   '"ref"': 'keyword.control.ref'
+  '"macro"' : 'keyword.control.macro'
   '"macro_rules!"': 'keyword.control.macro-def'
 
   '"as"': 'keyword.operator.as'
+  '"="' : 'keyword.operator.assign'
+  '":"' : 'keyword.operator.constraint'
+  '"::"': 'keyword.operator.namespace'
+  '"@"' : 'keyword.operator.pattern-binding'
   '"*"' : 'keyword.operator.sigil.pointer'
   '"&"' : 'keyword.operator.sigil.ref'
+  '"?"' : 'keyword.operator.error-propagation'
 
   '''
-  "+",
-  "-",
-  "/",
-  "*",
+    "+",
+    "-",
+    "/",
+    "*",
+    "%",
+    "<<",
+    ">>",
   ''' : 'keyword.operator.math'
 
   '''
-  "::",
-  "->",
-  "=>",
+    "&",
+    "|",
+    "^",
+  ''' : 'keyword.operator.logic.bitwise'
+
+  '''
+    "!",
+    "&&",
+    "||",
+  ''' : 'keyword.operator.logic.boolean'
+
+  '''
+    "..",
+    "..=",
+    "...",
+  ''' : 'keyword.operator.ranges'
+
+  '''
+    "->",
+    "=>",
   ''' : 'keyword.operator.misc'
 
   'char_literal': 'string.quoted.single'
@@ -163,10 +194,3 @@ scopes:
   'escape_sequence': 'constant.character.escape'
 
   'attribute_item, inner_attribute_item': 'entity.other.attribute-name'
-
-  '''
-  "as",
-  "*",
-  "&",
-  "::",
-  ''': 'keyword.operator'
