@@ -1,0 +1,172 @@
+name: 'Rust'
+scopeName: 'source.rust'
+type: 'tree-sitter'
+parser: 'tree-sitter-rust'
+
+fileTypes: [
+  'rs'
+]
+
+comments:
+  start: '// '
+
+folds: [
+  {
+    type: 'block_comment'
+  }
+  {
+    start: {index: 0, type: '{'}
+    end: {index: -1, type: '}'}
+  }
+  {
+    start: {index: 0, type: '['}
+    end: {index: -1, type: ']'}
+  }
+  {
+    start: {index: 0, type: '('}
+    end: {index: -1, type: ')'}
+  }
+  {
+    start: {index: 0, type: '<'}
+    end: {index: -1, type: '>'}
+  }
+]
+
+scopes:
+  'type_identifier': 'support.type.other'
+  'primitive_type': 'support.type.primitive'
+  'field_identifier': 'variable.other.member'
+
+  'line_comment': 'comment.block.line'
+  'block_comment': 'comment.block.block'
+
+  'identifier': [
+    {match: '^[A-Z\\d_]+$', scopes: 'constant.other'}
+  ]
+
+  '''
+  identifier,
+  call_expression > identifier,
+  call_expression > field_expression > field_identifier,
+  call_expression > scoped_identifier > identifier:nth-child(2)
+  ''': [
+    {match: '^[A-Z]', scopes: 'entity.name.class'}
+  ]
+
+  '''
+  generic_function > identifier,
+  generic_function > field_expression > field_identifier,
+  generic_function > scoped_identifier > identifier,
+  function_item > identifier,
+  function_signature_item > identifier,
+  ''' : 'entity.name.function'
+
+  '''
+  call_expression > identifier,
+  call_expression > field_expression > field_identifier,
+  call_expression > scoped_identifier > identifier:nth-child(2),
+  ''' : 'entity.name.function.call'
+
+  '''
+  macro_invocation > identifier,
+  macro_definition > identifier,
+  ''' : 'entity.name.macro'
+
+  '''
+  use_list > self,
+  scoped_use_list > self,
+  scoped_identifier> self,
+  use_list > crate,
+  scoped_use_list > crate,
+  scoped_identifier> crate,
+  use_list > super,
+  scoped_use_list > super,
+  scoped_identifier> super
+  ''': 'keyword.control'
+
+  '''
+  use_wildcard > identifier:nth-child(0),
+  scoped_type_identifier > identifier:nth-child(0),
+  scoped_type_identifier > scoped_identifier:nth-child(0) > identifier,
+  scoped_identifier > identifier:nth-child(0),
+  scoped_identifier > scoped_identifier:nth-child(0) > identifier,
+  use_declaration > identifier,
+  use_declaration > scoped_identifier > identifier,
+  use_list > identifier,
+  use_list > scoped_identifier > identifier,
+  meta_item > identifier
+  ''': [
+    {match: '^[A-Z]', scopes: 'support.type'}
+  ]
+
+  'lifetime > identifier': 'constant.lifetime'
+
+  '"let"': 'storage.modifier.let'
+  '"const"': 'storage.modifier.const'
+  '"static"': 'storage.modifier.static'
+  '"extern"': 'storage.modifier.extern'
+  '"fn"': 'storage.modifier.fn'
+  '"type"': 'storage.modifier.type'
+  '"impl"': 'storage.modifier.impl'
+  '"dyn"': 'storage.modifier.dyn'
+  '"trait"': 'storage.modifier.trait'
+  '"mod"': 'storage.modifier.mod'
+  '"pub"': 'storage.modifier.pub'
+  '"crate"': 'storage.modifier.crate'
+  '"default"': 'storage.modifier.default'
+  '"struct"': 'storage.modifier.struct'
+  '"enum"': 'storage.modifier.enum'
+  '"union"': 'storage.modifier.union'
+  'mutable_specifier': 'storage.modifier.mut'
+
+  '"unsafe"': 'keyword.control.unsafe'
+  '"use"': 'keyword.control.use'
+  '"match"': 'keyword.control.match'
+  '"if"': 'keyword.control.if'
+  '"in"': 'keyword.control.in'
+  '"else"': 'keyword.control.else'
+  '"move"': 'keyword.control.move'
+  '"while"': 'keyword.control.while'
+  '"loop"': 'keyword.control.loop'
+  '"for"': 'keyword.control.for'
+  '"let"': 'keyword.control.let'
+  '"return"': 'keyword.control.return'
+  '"continue"': 'keyword.control.continue'
+  '"break"': 'keyword.control.break'
+  '"where"': 'keyword.control.where'
+  '"ref"': 'keyword.control.ref'
+  '"macro_rules!"': 'keyword.control.macro-def'
+
+  '"as"': 'keyword.operator.as'
+  '"*"' : 'keyword.operator.sigil.pointer'
+  '"&"' : 'keyword.operator.sigil.ref'
+
+  '''
+  "+",
+  "-",
+  "/",
+  "*",
+  ''' : 'keyword.operator.math'
+
+  '''
+  "::",
+  "->",
+  "=>",
+  ''' : 'keyword.operator.misc'
+
+  'char_literal': 'string.quoted.single'
+  'string_literal': 'string.quoted.double'
+  'raw_string_literal': 'string.quoted.other'
+  'boolean_literal': 'constant.language.boolean'
+  'integer_literal': 'constant.numeric.decimal'
+  'float_literal': 'constant.numeric.decimal'
+  'escape_sequence': 'constant.character.escape'
+
+  'attribute_item, inner_attribute_item': 'entity.other.attribute-name'
+
+  '''
+  "as",
+  "*",
+  "&",
+  "::",
+  ''': 'keyword.operator'
