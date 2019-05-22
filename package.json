@@ -5,6 +5,7 @@
   "keywords": [
     "language",
     "grammar",
+    "syntax",
     "rust"
   ],
   "repository": "https://github.com/GrayJack/language-rust-treesitter",
