@@ -103,13 +103,17 @@ scopes:
     {match: '^[A-Z]', scopes: 'support.type'}
   ]
 
-  'parameter > identifier' : 'entity.name.parameter'
+  '''
+    parameter > identifier,
+    closure_parameters > identifier,
+  ''' : 'entity.name.parameter'
 
   'lifetime' : 'entity.name.lifetime'
   'loop_label' : 'entity.name.loop-label'
   'field_identifier' : 'entity.name.field'
   'self' : 'entity.name.self'
   'closure_expression' : 'entity.name.closure'
+  'remaining_field_pattern' : 'entity.name.match-remaining'
 
   '"async"' : 'storage.modifier.async'
   '"let"': 'storage.modifier.let'
@@ -150,13 +154,21 @@ scopes:
   '"macro"' : 'keyword.control.macro'
   '"macro_rules!"': 'keyword.control.macro-def'
 
+  'closure_parameters > "|"' : 'keyword.control.closure-def'
+
   '"as"': 'keyword.operator.as'
   '"="' : 'keyword.operator.assign'
   '":"' : 'keyword.operator.constraint'
   '"::"': 'keyword.operator.namespace'
-  '"@"' : 'keyword.operator.pattern-binding'
-  '"*"' : 'keyword.operator.sigil.pointer'
-  '"&"' : 'keyword.operator.sigil.ref'
+  'captured_pattern > "@"' : 'keyword.operator.pattern-binding'
+  'unary_expression > "*"' : 'keyword.operator.dereference'
+  '''
+    self_parameter > "&",
+    reference_pattern > "&",
+    reference_expression > "&",
+    reference_type > "&"
+  ''' : 'keyword.operator.reference'
+  'pointer_type > "*"' : 'keyword.operator.pointer'
   '"?"' : 'keyword.operator.error-propagation'
 
   '''
@@ -214,9 +226,13 @@ scopes:
     range_expression > "...",
   ''' : 'keyword.operator.ranges'
 
+  'match_arm > "=>", last_match_arm > "=>"' : 'keyword.operator.match-arm'
+  'macro_rule > "=>"' : 'keyword.operator.match-rule'
+
   '''
     "->",
-    "=>",
+    "<-",
+    "<=",
   ''' : 'keyword.operator.misc'
 
   'char_literal': 'string.quoted.single'
