@@ -71,8 +71,10 @@ scopes:
 
   '''
     macro_invocation > identifier,
-    macro_definition > identifier,
-  ''' : 'entity.name.macro'
+    macro_invocation > "!",
+  ''' : 'entity.name.macro.call'
+
+  'macro_definition > identifier' : 'entity.name.macro.def'
 
   '''
     use_list > self,
@@ -101,9 +103,13 @@ scopes:
     {match: '^[A-Z]', scopes: 'support.type'}
   ]
 
-  'function_item > parameters > parameter > identifier' : 'entity.name.parameter'
+  'parameter > identifier' : 'entity.name.parameter'
 
-  'lifetime' : 'constant.lifetime'
+  'lifetime' : 'entity.name.lifetime'
+  'loop_label' : 'entity.name.loop-label'
+  'field_identifier' : 'entity.name.field'
+  'self' : 'entity.name.self'
+  'closure_expression' : 'entity.name.closure'
 
   '"async"' : 'storage.modifier.async'
   '"let"': 'storage.modifier.let'
@@ -124,7 +130,7 @@ scopes:
   '"union"': 'storage.modifier.union'
   'mutable_specifier': 'storage.modifier.mut'
 
-  '".await"' : 'keyword.control.await'
+  '"await"' : 'keyword.control.await'
   '"unsafe"': 'keyword.control.unsafe'
   '"use"': 'keyword.control.use'
   '"match"': 'keyword.control.match'
@@ -154,57 +160,58 @@ scopes:
   '"?"' : 'keyword.operator.error-propagation'
 
   '''
-    "+",
-    "-",
-    "/",
-    "*",
-    "%",
-    "<<",
-    ">>",
+    binary_expression > "+",
+    binary_expression > "-",
+    binary_expression > "/",
+    binary_expression > "*",
+    binary_expression > "%",
+    binary_expression > "<<",
+    binary_expression > ">>",
   ''' : 'keyword.operator.math'
 
   '''
-    "+=",
-    "-=",
-    "/=",
-    "*=",
-    "%=",
-    "<<=",
-    ">>=",
+    compound_assignment_expr > "+=",
+    compound_assignment_expr > "-=",
+    compound_assignment_expr > "/=",
+    compound_assignment_expr > "*=",
+    compound_assignment_expr > "%=",
+    compound_assignment_expr > "<<=",
+    compound_assignment_expr > ">>=",
   ''' : 'keyword.operator.math.assign'
 
   '''
-    "<",
-    ">",
-    "==",
-    "<=",
-    ">=",
-    "!=",
+    binary_expression > "<",
+    binary_expression > ">",
+    binary_expression > "==",
+    binary_expression > "<=",
+    binary_expression > ">=",
+    binary_expression > "!=",
   ''' : 'keyword.operator.cmp'
 
-  '"!"' : [ {match: '(!)(?=[:word:])', scopes: 'keyword.operator.not'} ]
+  'unary_expression > "!"' : 'keyword.operator.not'
 
   '''
-    "&",
-    "|",
-    "^",
+    binary_expression > "&",
+    binary_expression > "|",
+    binary_expression > "^",
   ''' : 'keyword.operator.logic.bitwise'
 
   '''
-    "&=",
-    "|=",
-    "^=",
+    compound_assignment_expr > "&=",
+    compound_assignment_expr > "|=",
+    compound_assignment_expr > "^=",
   ''' : 'keyword.operator.logic.bitwise.assign'
 
   '''
-    "&&",
-    "||",
+    binary_expression > "&&",
+    binary_expression > "||",
   ''' : 'keyword.operator.logic.boolean'
 
+  #  range_expression > "..=" isn't defined in tree-sitter-rust grammar.json
   '''
-    "..",
+    range_expression > "..",
     "..=",
-    "...",
+    range_expression > "...",
   ''' : 'keyword.operator.ranges'
 
   '''
@@ -218,6 +225,7 @@ scopes:
   'boolean_literal': 'constant.language.boolean'
   'integer_literal': 'constant.numeric.decimal'
   'float_literal': 'constant.numeric.decimal'
+  'unary_expression > "-"' : 'constant.numeric.neg'
   'escape_sequence': 'constant.character.escape'
 
   'attribute_item, inner_attribute_item': 'entity.other.attribute-name'
