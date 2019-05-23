@@ -167,7 +167,7 @@ scopes:
   '"as"': 'keyword.operator.as'
   '":"' : 'keyword.operator.constraint'
   '"::"': 'keyword.operator.namespace'
-  'assignment_expression > "="' : 'keyword.operator.assign'
+  '"="' : 'keyword.operator.assign'
   'captured_pattern > "@"' : 'keyword.operator.pattern-binding'
   'unary_expression > "*"' : 'keyword.operator.dereference'
   'unary_expression > "!"' : 'keyword.operator.not'
