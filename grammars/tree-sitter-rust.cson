@@ -96,6 +96,8 @@ scopes:
     scoped_identifier > scoped_identifier:nth-child(0) > identifier,
     use_declaration > identifier,
     use_declaration > scoped_identifier > identifier,
+    use_as_clause > identifier,
+    use_as_clause > scoped_identifier > identifier,
     use_list > identifier,
     use_list > scoped_identifier > identifier,
     meta_item > identifier
