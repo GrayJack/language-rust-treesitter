@@ -37,6 +37,8 @@ scopes:
 
   'type_identifier': 'support.type.other'
   'primitive_type': 'support.type.primitive'
+  'empty_type' : 'support.type.never'
+  'unit_type' : 'support.type.unit'
   'field_identifier': 'variable.other.member'
 
   'line_comment': 'comment.block.line'
