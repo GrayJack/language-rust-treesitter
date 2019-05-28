@@ -231,7 +231,7 @@ scopes:
   #  range_expression > "..=" isn't defined in tree-sitter-rust grammar.json
   '''
     range_expression > "..",
-    "..=",
+    range_expression > "..=",
     range_expression > "...",
   ''' : 'keyword.operator.ranges'
 
