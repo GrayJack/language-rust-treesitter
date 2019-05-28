@@ -201,7 +201,7 @@
   # Macros
   'asm':
     prefix: 'asm'
-    body:'''
+    body: '''
       asm!(${1:assemblyTemplate}
       : ${2:outputOperands}
       : ${3:inputOperands}
@@ -253,3 +253,4 @@
       fn _start() -> ! {
       \t${1:unimplemented!()}
       }
+    '''
