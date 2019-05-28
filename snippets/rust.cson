@@ -1,4 +1,5 @@
 '.source.rust':
+  # Attributes
   'allow':
     prefix: 'allow'
     body: '#[allow(${1:lint})]'
@@ -14,6 +15,20 @@
   'derive':
     prefix: 'derive'
     body: '#[derive(${1:Trait})]'
+  'feature':
+    prefix: 'feature'
+    body: '#![feature(${1:feature})]'
+  'no_std':
+    prefix: 'no_std'
+    body: '#![no_std]'
+  'warn':
+    prefix: 'warn'
+    body: '#[warn(${1:lint})]'
+  'warn!':
+    prefix: 'warn!'
+    body: '#![warn(${1:lint})]'
+
+  # Definitions
   'enum':
     prefix: 'enum'
     body: '''
@@ -21,6 +36,50 @@
       \t$2
       }
     '''
+  'impl':
+    prefix: 'impl'
+    body: '''
+      impl ${1:TypeName} {
+      \t$2
+      }
+    '''
+  'implf':
+    prefix: 'implf'
+    body: '''
+      impl ${1:Trait} for ${2:TypeName} {
+      \t$2
+      }
+    '''
+  'macro':
+    prefix: 'macro'
+    body: '''
+      macro_rules! ${1:macro_name} {
+      \t($2) => ($3);
+      }
+    '''
+  'struct':
+    prefix: 'struct'
+    body: '''
+      struct ${1:TypeName} {
+      \t$2
+      }
+    '''
+  'trait':
+    prefix: 'trait'
+    body: '''
+      trait ${1:TraitName} {
+      \t$2
+      }
+    '''
+  'union':
+    prefix: 'union'
+    body: '''
+      union ${1:TypeName} {
+      \t$2
+      }
+    '''
+
+  # Bindings
   'fn':
     prefix: 'fn'
     body: '''
@@ -35,6 +94,31 @@
       \t${4:unimplemented!()}
       }
     '''
+  'if-let':
+    prefix: 'if-let'
+    body: '''
+      if let ${1:variable} = ${2:value} {
+      \t$3
+      }
+    '''
+  'let':
+    prefix: 'let'
+    body: 'let ${1:variable} = ${2:value};'
+  'static':
+    prefix: 'static'
+    body: 'static ${1:CONSTANT}: ${2:TypeName} = ${3:value};'
+  'type':
+    prefix: 'type'
+    body: 'type ${1:TypeName} = ${2:TypeName};'
+  'while-let':
+    prefix: 'while-let'
+    body: '''
+      while let ${1:variable} = ${2:value} {
+      \t$3
+      }
+    '''
+
+  # Control flow
   'for':
     prefix: 'for'
     body: '''
@@ -69,30 +153,6 @@
       \t$5
       }
     '''
-  'if-let':
-    prefix: 'if-let'
-    body: '''
-      if let ${1:variable} = ${2:value} {
-      \t$3
-      }
-    '''
-  'impl':
-    prefix: 'impl'
-    body: '''
-      impl ${1:TypeName} {
-      \t$2
-      }
-    '''
-  'implf':
-    prefix: 'implf'
-    body: '''
-      impl ${1:Trait} for ${2:TypeName} {
-      \t$2
-      }
-    '''
-  'let':
-    prefix: 'let'
-    body: 'let ${1:variable} = ${2:value};'
   'loop':
     prefix: 'loop'
     body: '''
@@ -100,18 +160,11 @@
       \t$1
       }
     '''
-  'macro':
-    prefix: 'macro'
+  'while':
+    prefix: 'while'
     body: '''
-      macro_rules! ${1:macro_name} {
-      \t($2) => ($3);
-      }
-    '''
-  'main':
-    prefix: 'main'
-    body: '''
-      fn main() {
-      \t${1:unimplemented!()}
+      while ${1:expression} {
+      \t$2
       }
     '''
   'match':
@@ -121,22 +174,8 @@
       \t$2
       }
     '''
-  'print':
-    prefix: 'print'
-    body: 'print!("${1:{${2::?}\\}}", ${3});'
-  'println':
-    prefix: 'println'
-    body: 'println!("${1:{${2::?}\\}}", ${3});'
-  'static':
-    prefix: 'static'
-    body: 'static ${1:CONSTANT}: ${2:TypeName} = ${3:value};'
-  'struct':
-    prefix: 'struct'
-    body: '''
-      struct ${1:TypeName} {
-      \t$2
-      }
-    '''
+
+  # Unit testing
   'test':
     prefix: 'test'
     body: '''
@@ -158,33 +197,59 @@
       \t}
       }
     '''
-  'trait':
-    prefix: 'trait'
+
+  # Macros
+  'asm':
+    prefix: 'asm'
+    body:'''
+      asm!(${1:assemblyTemplate}
+      : ${2:outputOperands}
+      : ${3:inputOperands}
+      : ${4:clobbers}
+      : ${5:options}
+      );
+    '''
+  'assert_eq':
+    prefix: 'assert_eq'
+    body: 'assert_eq!($1, $2);'
+  'assert_ne':
+    prefix: 'assert_ne'
+    body: 'assert_ne!($1, $2);'
+  'eprint':
+    prefix: 'eprint'
+    body: 'eprint!("${1:{${2::?}\\}}", ${3});'
+  'eprintln':
+    prefix: 'eprintln'
+    body: 'eprintln!("${1:{${2::?}\\}}", ${3});'
+  'print':
+    prefix: 'print'
+    body: 'print!("${1:{${2::?}\\}}", ${3});'
+  'println':
+    prefix: 'println'
+    body: 'println!("${1:{${2::?}\\}}", ${3});'
+  'stringify':
+    prefix: 'stringify'
+    body: 'stringify!($1);'
+  'write':
+    prefix: 'write'
+    body: 'write!(${1:out}, "${2:{${3::?}\\}}", ${4});'
+  'writeln':
+    prefix: 'writeln'
+    body: 'writeln!(${1:out}, "${2:{${3::?}\\}}", ${4});'
+
+  # Misc
+  'main':
+    prefix: 'main'
     body: '''
-      trait ${1:TraitName} {
-      \t$2
+      fn main() {
+      \t${1:unimplemented!()}
       }
     '''
-  'type':
-    prefix: 'type'
-    body: 'type ${1:TypeName} = ${2:TypeName};'
-  'warn':
-    prefix: 'warn'
-    body: '#[warn(${1:lint})]'
-  'warn!':
-    prefix: 'warn!'
-    body: '#![warn(${1:lint})]'
-  'while':
-    prefix: 'while'
+
+  'start':
+    prefix: 'start'
     body: '''
-      while ${1:expression} {
-      \t$2
+      #![no_main]
+      fn _start() -> ! {
+      \t${1:unimplemented!()}
       }
-    '''
-  'while-let':
-    prefix: 'while-let'
-    body: '''
-      while let ${1:variable} = ${2:value} {
-      \t$3
-      }
-    '''

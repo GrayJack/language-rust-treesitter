@@ -230,7 +230,6 @@ scopes:
     binary_expression > "||",
   ''' : 'keyword.operator.logic.boolean'
 
-  #  range_expression > "..=" isn't defined in tree-sitter-rust grammar.json
   '''
     range_expression > "..",
     range_expression > "..=",
