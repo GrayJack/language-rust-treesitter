@@ -145,7 +145,7 @@ scopes:
   '"union"': 'storage.modifier.union'
   'mutable_specifier': 'storage.modifier.mut'
 
-  '"await"' : 'keyword.control.await'
+  'await_expression > "await"' : 'keyword.control.await'
   '"unsafe"': 'keyword.control.unsafe'
   '"use"': 'keyword.control.use'
   '"match"': 'keyword.control.match'
