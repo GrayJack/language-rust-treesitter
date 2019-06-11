@@ -11,7 +11,7 @@
   "repository": "https://github.com/GrayJack/language-rust-treesitter",
   "license": "MIT",
   "dependencies": {
-    "tree-sitter-rust": "git://github.com/tree-sitter/tree-sitter-rust#master"
+    "tree-sitter-rust": "git://github.com/GrayJack/tree-sitter-rust#async"
   },
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
