@@ -48,6 +48,43 @@ scopes:
     {match: '^[A-Z\\d_]+$', scopes: 'constant.other'}
   ]
 
+  # Macro related stuff
+  '''
+    macro_invocation > identifier,
+    macro_invocation > "!",
+  ''' : 'entity.name.macro.call'
+
+  'macro_definition > identifier' : 'entity.name.macro.def'
+
+  'metavariable': 'variable.other.meta'
+
+  # Fragment specifier types
+  'fragment_specifier > "block"': 'support.type.fragment.block'
+  'fragment_specifier > "expr"': 'support.type.fragment.expr'
+  'fragment_specifier > "ident"': 'support.type.fragment.ident'
+  'fragment_specifier > "item"': 'support.type.fragment.item'
+  'fragment_specifier > "meta"': 'support.type.fragment.meta'
+  'fragment_specifier > "pat"': 'support.type.fragment.pat'
+  'fragment_specifier > "path"': 'support.type.fragment.path'
+  'fragment_specifier > "stmt"': 'support.type.fragment.stmt'
+  'fragment_specifier > "tt"': 'support.type.fragment.tt'
+  'fragment_specifier > "ty"': 'support.type.fragment.ty'
+
+  '''
+    token_repetition > "$",
+    token_repetition_pattern > "$"
+  ''': 'support.repetiton.start'
+
+  '''
+    token_repetition > "*",
+    token_repetition_pattern > "*"
+  ''': 'support.repetiton.zero_or_more'
+  '''
+    token_repetition > "+",
+    token_repetition_pattern > "+"
+  ''': 'support.repetiton.one_or_more'
+
+  # Enums
   '''
     identifier,
     call_expression > identifier,
@@ -57,6 +94,7 @@ scopes:
     {match: '^[A-Z]', scopes: 'entity.name.enum'},
   ]
 
+  # Functions
   '''
     generic_function > identifier,
     generic_function > field_expression > field_identifier,
@@ -77,13 +115,7 @@ scopes:
     'entity.name.function.call'
   ]
 
-  '''
-    macro_invocation > identifier,
-    macro_invocation > "!",
-  ''' : 'entity.name.macro.call'
-
-  'macro_definition > identifier' : 'entity.name.macro.def'
-
+  # Other
   '''
     use_list > self,
     scoped_use_list > self,
