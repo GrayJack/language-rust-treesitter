@@ -277,6 +277,11 @@ scopes:
     "<=",
   ''' : 'keyword.operator.misc'
 
+  '''
+    "+", "-", "/", "*", "%", "<<", ">>", "&&", "||", "<", ">",
+    "==", "<=", ">=", "!=", "&", "|", "^", "..", "..=", "...",
+  ''' : 'misc.other'
+
   'char_literal': 'string.quoted.single'
   'string_literal': 'string.quoted.double'
   'raw_string_literal': 'string.quoted.other'
