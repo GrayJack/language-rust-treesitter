@@ -8,12 +8,13 @@
     "syntax",
     "rust"
   ],
+  "main": "lib/main.js",
   "repository": "https://github.com/GrayJack/language-rust-treesitter",
   "license": "MIT",
   "dependencies": {
-    "tree-sitter-rust": "git://github.com/GrayJack/tree-sitter-rust#async"
+    "tree-sitter-rust": "^0.15.1"
   },
   "engines": {
-    "atom": ">=1.0.0 <2.0.0"
+    "atom": ">=1.39.0 <2.0.0"
   }
 }
