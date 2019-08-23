@@ -3,6 +3,7 @@ scopeName: 'source.rust'
 type: 'tree-sitter'
 parser: 'tree-sitter-rust'
 injectionRegex: 'rust'
+injectionRegExp: 'rust'
 
 fileTypes: [
   'rs'
