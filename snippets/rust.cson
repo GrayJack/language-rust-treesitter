@@ -27,6 +27,9 @@
   'warn!':
     prefix: 'warn!'
     body: '#![warn(${1:lint})]'
+  'macroexp':
+    prefix: 'macroexp'
+    body: '#[macro_export]'
 
   # Definitions
   'enum':
