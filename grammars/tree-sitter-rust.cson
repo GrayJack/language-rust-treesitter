@@ -145,7 +145,8 @@ scopes:
     use_list > scoped_identifier > identifier,
     meta_item > identifier
   ''': [
-    {match: '^[A-Z]', scopes: 'support.type'}
+    {match: '^[A-Z\\d_]+$', scopes: 'constant.other'},
+    {match: '^[A-Z]', scopes: 'support.type'},
   ]
 
   '''
