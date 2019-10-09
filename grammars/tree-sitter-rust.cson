@@ -47,7 +47,7 @@ scopes:
   'block_comment': 'comment.block.block'
 
   'identifier': [
-    {match: '^[A-Z\\d_]+$', scopes: 'constant.other'}
+    {match: '^[A-Z\\d_]{2,}$', scopes: 'constant.other'}
   ]
 
   # Macro related stuff
@@ -145,7 +145,7 @@ scopes:
     use_list > scoped_identifier > identifier,
     meta_item > identifier
   ''': [
-    {match: '^[A-Z\\d_]+$', scopes: 'constant.other'},
+    {match: '^[A-Z\\d_]{2,}$', scopes: 'constant.other'},
     {match: '^[A-Z]', scopes: 'support.type'},
   ]
 
