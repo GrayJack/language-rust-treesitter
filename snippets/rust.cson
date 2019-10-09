@@ -6,6 +6,9 @@
   'allow!':
     prefix: 'allow!'
     body: '#![allow(${1:lint})]'
+  'cfg':
+    prefix: 'cfg'
+    body: '#[cfg($1)]'
   'deny':
     prefix: 'deny'
     body: '#[deny(${1:lint})]'
