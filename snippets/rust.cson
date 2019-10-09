@@ -252,6 +252,14 @@
       }
     '''
 
+  'mainres':
+    prefix: 'mainres'
+    body: '''
+      fn main() -> Result<(), Box<dyn std::error::Error>> {
+      \t${1:unimplemented!()}
+      }
+    '''
+
   'start':
     prefix: 'start'
     body: '''
