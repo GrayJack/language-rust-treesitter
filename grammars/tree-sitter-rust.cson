@@ -152,7 +152,7 @@ scopes:
   '''
     parameter > identifier,
     closure_parameters > identifier,
-  ''' : 'entity.name.parameter'
+  ''' : 'entity.name.variable.parameter'
 
   'lifetime' : 'entity.name.lifetime'
   'loop_label' : 'entity.name.loop-label'
