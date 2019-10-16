@@ -3,6 +3,8 @@
   "version": "1.3.0",
   "description": "Rust support for Atom",
   "keywords": [
+    "treesitter",
+    "tree-sitter",
     "language",
     "grammar",
     "syntax",
