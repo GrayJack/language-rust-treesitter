@@ -22,3 +22,10 @@ A better Tree Sitter atom package for rust than `language-rust-bundled`
   2. TextMate version is slower and have doc string highlight, but lacks parameter, struct field tokennization and context tokennization.
 
  - The TextMate version is just copy-paste of [TheEnigmaBlade/atom-language-rust-redux](https://github.com/TheEnigmaBlade/atom-language-rust-redux) so I put his name on the license file for the contribution.
+
+### Example
+**Examples using [monokai-grayjack-syntax](https://atom.io/themes/monokai-grayjack-syntax)**
+
+![example](./example.png)
+
+![example2](./example2.png)
