@@ -157,9 +157,11 @@ scopes:
   'lifetime' : 'entity.name.lifetime'
   'loop_label' : 'entity.name.loop-label'
   'field_identifier' : 'entity.name.variable.field'
-  'self' : 'entity.name.self'
+  'self' : 'entity.name.variable.self'
   'closure_expression' : 'entity.name.closure'
   'remaining_field_pattern' : 'entity.name.match-remaining'
+
+  'impl_item > "!"' : 'entity.other.trait_negation'
 
   '"async"'  : 'storage.modifier.async'
   '"let"'    : 'storage.modifier.let'
