@@ -161,7 +161,7 @@ scopes:
   'closure_expression' : 'entity.name.closure'
   'remaining_field_pattern' : 'entity.name.match-remaining'
 
-  'impl_item > "!"' : 'entity.other.trait_negation'
+  'impl_item > "!"' : 'entity.other.trait-negation'
 
   '"async"'  : 'storage.modifier.async'
   '"let"'    : 'storage.modifier.let'
