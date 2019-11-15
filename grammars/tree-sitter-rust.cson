@@ -81,10 +81,16 @@ scopes:
     token_repetition > "*",
     token_repetition_pattern > "*"
   ''': 'support.repetiton.zero_or_more'
+
   '''
     token_repetition > "+",
     token_repetition_pattern > "+"
   ''': 'support.repetiton.one_or_more'
+
+  '''
+    token_repetition > "?",
+    token_repetition_pattern > "?"
+  ''': 'support.repetiton.zero_or_one'
 
   # Enums
   '''
