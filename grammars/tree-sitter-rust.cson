@@ -293,7 +293,7 @@ scopes:
     "==", "<=", ">=", "!=", "&", "|", "^", "..", "..=", "...", "->"
   ''' : 'misc.other'
 
-  'unit_expression'    : 'constant.unit'
+  'unit_expression'    : 'constant.language.unit'
   'char_literal'       : 'string.quoted.single'
   'string_literal'     : 'string.quoted.double'
   'raw_string_literal' : 'string.quoted.other'
