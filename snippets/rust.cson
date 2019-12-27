@@ -24,6 +24,9 @@
   'no_std':
     prefix: 'no_std'
     body: '#![no_std]'
+  'no_main':
+    prefix: 'no_main'
+    body: '#![no_main]'
   'warn':
     prefix: 'warn'
     body: '#[warn(${1:lint})]'
@@ -33,6 +36,9 @@
   'macroexp':
     prefix: 'macroexp'
     body: '#[macro_export]'
+  'repr':
+    prefix: 'repr'
+    body: '#[repr($1)]'
 
   # Definitions
   'enum':
@@ -103,7 +109,7 @@
   'if-let':
     prefix: 'if-let'
     body: '''
-      if let ${1:variable} = ${2:value} {
+      if let ${1:pattern} = ${2:expr} {
       \t$3
       }
     '''
@@ -119,7 +125,7 @@
   'while-let':
     prefix: 'while-let'
     body: '''
-      while let ${1:variable} = ${2:value} {
+      while let ${1:pattern} = ${2:expr} {
       \t$3
       }
     '''
@@ -215,6 +221,9 @@
       : ${5:options}
       );
     '''
+  'assert':
+    prefix: 'assert'
+    body: 'assert!($1);'
   'assert_eq':
     prefix: 'assert_eq'
     body: 'assert_eq!($1, $2);'
