@@ -158,6 +158,7 @@ scopes:
   '''
     parameter > identifier,
     closure_parameters > identifier,
+    closure_parameters > tuple_pattern > identifier,
   ''' : 'entity.name.variable.parameter'
 
   'lifetime' : 'entity.name.lifetime'
