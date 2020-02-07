@@ -33,6 +33,17 @@
   'warn!':
     prefix: 'warn!'
     body: '#![warn(${1:lint})]'
+  'clippy-annoy':
+    prefix: "clippy"
+    body: '''
+      #![warn(
+      \tclippy::all,
+      \tclippy::restriction,
+      \tclippy::pedantic,
+      \tclippy::nursery,
+      \tclippy::cargo,
+      )]
+    '''
   'macroexp':
     prefix: 'macroexp'
     body: '#[macro_export]'
