@@ -37,7 +37,10 @@ folds: [
 scopes:
   'source_file': 'source.rust'
 
-  'type_identifier': 'support.type.other'
+  'type_identifier': [
+    {match: '^[A-Z\\d_]{1,}$', scopes: 'constant.other'},
+    'support.type.other'
+  ]
   'primitive_type': 'support.type.primitive'
   'empty_type' : 'support.type.never'
   'unit_type' : 'support.type.unit'
@@ -46,7 +49,7 @@ scopes:
   'line_comment': 'comment.block.line'
   'block_comment': 'comment.block.block'
 
-  'identifier': [
+  '''identifier''': [
     {match: '^[A-Z\\d_]{2,}$', scopes: 'constant.other'}
   ]
 
