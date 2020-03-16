@@ -68,12 +68,15 @@ scopes:
   'fragment_specifier > "expr"': 'support.type.fragment.expr'
   'fragment_specifier > "ident"': 'support.type.fragment.ident'
   'fragment_specifier > "item"': 'support.type.fragment.item'
+  'fragment_specifier > "lifetime"': 'support.type.fragment.lifetime'
+  'fragment_specifier > "literal"': 'support.type.fragment.literal'
   'fragment_specifier > "meta"': 'support.type.fragment.meta'
   'fragment_specifier > "pat"': 'support.type.fragment.pat'
   'fragment_specifier > "path"': 'support.type.fragment.path'
   'fragment_specifier > "stmt"': 'support.type.fragment.stmt'
   'fragment_specifier > "tt"': 'support.type.fragment.tt'
   'fragment_specifier > "ty"': 'support.type.fragment.ty'
+  'fragment_specifier > "vis"': 'support.type.fragment.vis'
 
   '''
     token_repetition > "$",
