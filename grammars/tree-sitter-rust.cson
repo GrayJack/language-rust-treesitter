@@ -172,7 +172,12 @@ scopes:
     closure_parameters > tuple_pattern > identifier,
     closure_parameters > captured_pattern > identifier,
     closure_parameters > reference_pattern > identifier,
-    closure_parameters > tuple_struct_pattern > identifier,
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(1),
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(2),
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(3),
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(4),
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(5),
+    closure_parameters > tuple_struct_pattern > identifier:nth-child(6),
     closure_parameters > struct_pattern > field_pattern > identifier,
   ''' : 'entity.name.variable.parameter'
 
