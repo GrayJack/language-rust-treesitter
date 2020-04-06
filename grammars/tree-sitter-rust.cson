@@ -37,8 +37,10 @@ folds: [
 scopes:
   'source_file': 'source.rust'
 
+  'const_parameter > identifier' : 'constant.other'
+
   'type_identifier': [
-    {match: '^[A-Z\\d_]{1,}$', scopes: 'constant.other'},
+    {match: '^[A-Z\\d_]{2,}$', scopes: 'constant.other'},
     'support.type.other'
   ]
   'primitive_type': 'support.type.primitive'
@@ -165,7 +167,13 @@ scopes:
   '''
     parameter > identifier,
     closure_parameters > identifier,
+    closure_parameters > mut_pattern > identifier,
+    closure_parameters > ref_pattern > identifier,
     closure_parameters > tuple_pattern > identifier,
+    closure_parameters > captured_pattern > identifier,
+    closure_parameters > reference_pattern > identifier,
+    closure_parameters > tuple_struct_pattern > identifier,
+    closure_parameters > struct_pattern > field_pattern > identifier,
   ''' : 'entity.name.variable.parameter'
 
   'lifetime' : 'entity.name.lifetime'
@@ -309,6 +317,6 @@ scopes:
   'integer_literal'    : 'constant.numeric.decimal'
   'float_literal'      : 'constant.numeric.decimal'
   'escape_sequence'    : 'constant.character.escape'
-  'unary_expression > "-"' : 'constant.numeric.neg'
+  'negative_literal > "-"' : 'constant.numeric.neg'
 
   'attribute_item, inner_attribute_item': 'entity.attribute.name'
