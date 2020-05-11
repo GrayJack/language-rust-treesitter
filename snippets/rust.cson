@@ -131,21 +131,21 @@
     body: 'type ${1:TypeName} = ${2:TypeName};'
 
   # Control flow
-  'For':
+  'For expression':
     prefix: 'for'
     body: '''
       for ${1:variable} in ${2:iterator} {
       \t$3
       }
     '''
-  'If':
+  'If expression':
     prefix: 'if'
     body: '''
       if ${1:expression} {
       \t$2
       }
     '''
-  'If and else':
+  'If and else expression':
     prefix: 'if-else'
     body: '''
       if ${1:expression} {
@@ -154,7 +154,7 @@
       \t$3
       }
     '''
-  'If, elseif and else':
+  'If, elseif and else expression':
     prefix: 'if-elseif-else'
     body: '''
       if ${1:expression} {
@@ -165,14 +165,14 @@
       \t$5
       }
     '''
-  'If let':
+  'If let expression':
     prefix: 'if-let'
     body: '''
       if let ${1:pattern} = ${2:expr} {
       \t$3
       }
     '''
-  'If let with else':
+  'If let with else expression':
     prefix: "if-let-else"
     body: '''
       if let ${1:pattern} = ${2:expr} {
@@ -181,28 +181,28 @@
       \t
       }
     '''
-  'Loop':
+  'Loop expression':
     prefix: 'loop'
     body: '''
       loop {
       \t$1
       }
     '''
-  'While':
+  'While expression':
     prefix: 'while'
     body: '''
       while ${1:expression} {
       \t$2
       }
     '''
-  'While let':
+  'While let expression':
     prefix: 'while-let'
     body: '''
       while let ${1:pattern} = ${2:expr} {
       \t$3
       }
     '''
-  'Match':
+  'Match expression':
     prefix: 'match'
     body: '''
       match ${1:expression} {
