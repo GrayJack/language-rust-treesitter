@@ -1,39 +1,39 @@
 '.source.rust':
   # Attributes
-  'allow':
+  'Local allow attribute':
     prefix: 'allow'
     body: '#[allow(${1:lint})]'
-  'allow!':
+  'Global allow attribute':
     prefix: 'allow!'
     body: '#![allow(${1:lint})]'
-  'cfg':
+  'Cfg attribute':
     prefix: 'cfg'
     body: '#[cfg($1)]'
-  'deny':
+  'Local deny attribute':
     prefix: 'deny'
     body: '#[deny(${1:lint})]'
-  'deny!':
+  'Global deny attribute':
     prefix: 'deny!'
     body: '#![deny(${1:lint})]'
-  'derive':
+  'Derive attribute':
     prefix: 'derive'
     body: '#[derive(${1:Trait})]'
-  'feature':
+  'Feature attribute':
     prefix: 'feature'
     body: '#![feature(${1:feature})]'
-  'no_std':
+  'No std attribute':
     prefix: 'no_std'
     body: '#![no_std]'
-  'no_main':
+  'No main attribute':
     prefix: 'no_main'
     body: '#![no_main]'
-  'warn':
+  'Local warn attribute':
     prefix: 'warn'
     body: '#[warn(${1:lint})]'
-  'warn!':
+  'Global warn attribute':
     prefix: 'warn!'
     body: '#![warn(${1:lint})]'
-  'clippy-annoy':
+  'Makes clippy annoying':
     prefix: "clippy"
     body: '''
       #![warn(
@@ -44,57 +44,57 @@
       \tclippy::cargo,
       )]
     '''
-  'macroexp':
+  'Macro export attribute':
     prefix: 'macroexp'
     body: '#[macro_export]'
-  'repr':
+  'Repr attribute':
     prefix: 'repr'
     body: '#[repr($1)]'
 
   # Definitions
-  'enum':
+  'Enum definition':
     prefix: 'enum'
     body: '''
       enum ${1:TypeName} {
       \t$2
       }
     '''
-  'impl':
+  'Impl definition':
     prefix: 'impl'
     body: '''
       impl ${1:TypeName} {
       \t$2
       }
     '''
-  'implf':
+  'Impl for trait definition':
     prefix: 'implf'
     body: '''
       impl ${1:Trait} for ${2:TypeName} {
       \t$2
       }
     '''
-  'macro':
+  'Macro definition':
     prefix: 'macro'
     body: '''
       macro_rules! ${1:macro_name} {
       \t($2) => ($3);
       }
     '''
-  'struct':
+  'Struct definition':
     prefix: 'struct'
     body: '''
       struct ${1:TypeName} {
       \t$2
       }
     '''
-  'trait':
+  'Tarit definition':
     prefix: 'trait'
     body: '''
       trait ${1:TraitName} {
       \t$2
       }
     '''
-  'union':
+  'Union definition':
     prefix: 'union'
     body: '''
       union ${1:TypeName} {
@@ -103,60 +103,49 @@
     '''
 
   # Bindings
-  'fn':
+  'Function declaration with no result':
     prefix: 'fn'
     body: '''
       fn ${1:function_name}($2) {
       \t${3:unimplemented!()}
       }
     '''
-  'fnr':
+  'Function declaration with result':
     prefix: 'fnr'
     body: '''
       fn ${1:function_name}($2) -> ${3:TypeName} {
       \t${4:unimplemented!()}
       }
     '''
-  'if-let':
-    prefix: 'if-let'
-    body: '''
-      if let ${1:pattern} = ${2:expr} {
-      \t$3
-      }
-    '''
-  'let':
+  'Constant declaration':
+    prefix: 'const'
+    body: 'const ${1:NAME}: ${2:TypeName} = ${3:value}'
+  'Let declaration':
     prefix: 'let'
     body: 'let ${1:variable} = ${2:value};'
-  'static':
+  'Static declaration':
     prefix: 'static'
-    body: 'static ${1:CONSTANT}: ${2:TypeName} = ${3:value};'
-  'type':
+    body: 'static ${1:NAME}: ${2:TypeName} = ${3:value};'
+  'Type alias':
     prefix: 'type'
     body: 'type ${1:TypeName} = ${2:TypeName};'
-  'while-let':
-    prefix: 'while-let'
-    body: '''
-      while let ${1:pattern} = ${2:expr} {
-      \t$3
-      }
-    '''
 
   # Control flow
-  'for':
+  'For':
     prefix: 'for'
     body: '''
       for ${1:variable} in ${2:iterator} {
       \t$3
       }
     '''
-  'if':
+  'If':
     prefix: 'if'
     body: '''
       if ${1:expression} {
       \t$2
       }
     '''
-  'if-else':
+  'If and else':
     prefix: 'if-else'
     body: '''
       if ${1:expression} {
@@ -165,7 +154,7 @@
       \t$3
       }
     '''
-  'if-elseif-else':
+  'If, elseif and else':
     prefix: 'if-elseif-else'
     body: '''
       if ${1:expression} {
@@ -176,21 +165,44 @@
       \t$5
       }
     '''
-  'loop':
+  'If let':
+    prefix: 'if-let'
+    body: '''
+      if let ${1:pattern} = ${2:expr} {
+      \t$3
+      }
+    '''
+  'If let with else':
+    prefix: "if-let-else"
+    body: '''
+      if let ${1:pattern} = ${2:expr} {
+      \t$3
+      } else {
+      \t
+      }
+    '''
+  'Loop':
     prefix: 'loop'
     body: '''
       loop {
       \t$1
       }
     '''
-  'while':
+  'While':
     prefix: 'while'
     body: '''
       while ${1:expression} {
       \t$2
       }
     '''
-  'match':
+  'While let':
+    prefix: 'while-let'
+    body: '''
+      while let ${1:pattern} = ${2:expr} {
+      \t$3
+      }
+    '''
+  'Match':
     prefix: 'match'
     body: '''
       match ${1:expression} {
@@ -199,7 +211,7 @@
     '''
 
   # Unit testing
-  'test':
+  'Test function declaration':
     prefix: 'test'
     body: '''
       #[test]
@@ -207,7 +219,7 @@
       \t${2:unimplemented!()}
       }
     '''
-  'testmod':
+  'Test module creation':
     prefix: 'testmod'
     body: '''
       #[cfg(test)]
@@ -222,49 +234,48 @@
     '''
 
   # Macros
-  'asm':
-    prefix: 'asm'
-    body: '''
-      asm!(${1:assemblyTemplate}
-      : ${2:outputOperands}
-      : ${3:inputOperands}
-      : ${4:clobbers}
-      : ${5:options}
-      );
-    '''
-  'assert':
+  'Assert macro':
     prefix: 'assert'
     body: 'assert!($1);'
-  'assert_eq':
+  'Assert equal macro':
     prefix: 'assert_eq'
     body: 'assert_eq!($1, $2);'
-  'assert_ne':
+  'Assert not equal macro':
     prefix: 'assert_ne'
     body: 'assert_ne!($1, $2);'
-  'eprint':
+  'Print to stderr macro':
     prefix: 'eprint'
     body: 'eprint!("${1:{${2::?}\\}}", ${3});'
-  'eprintln':
+  'Print to stderr with newline macro':
     prefix: 'eprintln'
     body: 'eprintln!("${1:{${2::?}\\}}", ${3});'
-  'print':
+  'Print to stdout macro':
     prefix: 'print'
     body: 'print!("${1:{${2::?}\\}}", ${3});'
-  'println':
+  'Print to stdout with newline macro':
     prefix: 'println'
     body: 'println!("${1:{${2::?}\\}}", ${3});'
-  'stringify':
+  'Stringify macro':
     prefix: 'stringify'
     body: 'stringify!($1);'
-  'write':
+  'Todo macro':
+    prefix: 'todo'
+    body: 'todo!($1)$2'
+  'Unimplemented macro':
+    prefix: 'unimplemented'
+    body: 'unimplemented!($1)$2'
+  'Unreachable macro':
+    prefix: 'unreachable'
+    body: 'unreachable!($1)$2'
+  'Write macro':
     prefix: 'write'
     body: 'write!(${1:out}, "${2:{${3::?}\\}}", ${4});'
-  'writeln':
+  'Write with newline macro':
     prefix: 'writeln'
     body: 'writeln!(${1:out}, "${2:{${3::?}\\}}", ${4});'
 
   # Misc
-  'main':
+  'Main function declaration':
     prefix: 'main'
     body: '''
       fn main() {
@@ -272,7 +283,7 @@
       }
     '''
 
-  'mainres':
+  'Main function declaration with Result':
     prefix: 'mainres'
     body: '''
       fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -280,7 +291,7 @@
       }
     '''
 
-  'start':
+  'Start function declaration':
     prefix: 'start'
     body: '''
       #![no_main]
