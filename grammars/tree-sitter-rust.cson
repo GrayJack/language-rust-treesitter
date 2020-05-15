@@ -230,6 +230,15 @@ scopes:
   '"macro_rules!"': 'keyword.control.macro-def'
   'closure_parameters > "|"' : 'keyword.control.closure-def'
 
+  '";"': 'punctuation.terminator.statement'
+  '"["': 'punctuation.definition.begin.bracket.square'
+  '"]"': 'punctuation.definition.end.bracket.square'
+  '","': 'punctuation.separator.delimiter'
+  '"{"': 'punctuation.section.block.begin.bracket.curly'
+  '"}"': 'punctuation.section.block.end.bracket.curly'
+  '"("': 'punctuation.section.parens.begin.bracket.round'
+  '")"': 'punctuation.section.parens.end.bracket.round'
+
   '"as"': 'keyword.operator.as'
   '":"' : 'keyword.operator.constraint'
   '"::"': 'keyword.operator.namespace'
