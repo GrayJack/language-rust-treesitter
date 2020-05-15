@@ -230,6 +230,7 @@ scopes:
   '"macro"'    : 'keyword.control.macro'
   '"macro_rules!"': 'keyword.control.macro-def'
   'closure_parameters > "|"' : 'keyword.control.closure-def'
+  'or_pattern > "|"' : 'keyword.control.or-pattern-separator'
 
   '";"': 'punctuation.terminator.statement'
   '"["': 'punctuation.definition.begin.bracket.square'
